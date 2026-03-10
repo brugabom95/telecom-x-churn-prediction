@@ -37,13 +37,13 @@ Com a análise, identificamos que o perfil de risco é o **novo cliente, com pla
 ### 📈 Visualizações Principais
 
 #### 1. Distribuição da Evasão
-![Distribuição de Churn](img/churn_distribuicao.png)
+![Distribuição de Churn](img/01_churn_distribuicao.png)
 
 #### 2. Impacto do Tipo de Contrato
-![Evasão por Contrato](img/churn_contrato.png)
+![Evasão por Contrato](img/01_churn_contrato.png)
 
 #### 3. Matriz de Correlação entre Variáveis
-![Heatmap de Correlação](img/heatmap.png)
+![Heatmap de Correlação](img/01_heatmap.png)
 
 
 ### Parte 2: Machine Learning e Inteligência de Negócio
@@ -79,3 +79,4 @@ A implementação deste modelo permite à Telecom X:
 
 ---
 **Projeto desenvolvido por: Bruno Gabriel** 
+

@@ -1,0 +1,10 @@
+# Bibliotecas principais de Data Science e Machine Learning
+pandas==2.2.1
+numpy==1.26.4
+scikit-learn==1.4.1
+seaborn==0.13.2
+matplotlib==3.8.3
+
+# Utilitários adicionais (opcional, mas recomendados)
+jupyter==1.0.0   # Para rodar os notebooks
+pickle-mixin==1.0.2  # Suporte extra para manipulação de objetos pickle

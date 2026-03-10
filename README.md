@@ -5,18 +5,46 @@
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![Seaborn](https://img.shields.io/badge/Seaborn-blue?style=for-the-badge)
 
-Este repositório contém uma solução completa para o problema de evasão de clientes (**Churn**) da Telecom X. O projeto foi dividido em duas etapas principais: o tratamento de dados complexos vindo de APIs e a construção de inteligência preditiva para suporte à decisão.
+Este projeto apresenta uma solução completa de **Data Science** para a empresa fictícia **Telecom X**. O objetivo foi identificar os principais motivos que levam os clientes a cancelarem seus serviços (Churn) e propor estratégias baseadas em dados para retenção.
 
 ## 📌 Contexto do Desafio
-A Telecom X sofria com altas taxas de cancelamento. O objetivo foi transformar dados brutos (JSON aninhado) em insights estratégicos e um modelo de classificação capaz de prever o churn antes que ele ocorra.
+A Telecom X enfrentava uma perda significativa de clientes. Recebemos um banco de dados bruto via API em formato JSON aninhado. O desafio foi percorrer todo o ciclo **ETL (Extract, Transform, Load)** e realizar uma **Análise Exploratória (EDA)** profunda para gerar insights acionáveis.
 
-## 🛠️ Etapas do Desenvolvimento
+## 🛠️ Etapas do Projeto
 
-### Parte 1: ETL & Análise Exploratória (EDA)
-* **Extração & Flattening:** Consumo de dados brutos via API e "achatamento" de arquivos JSON complexos para o formato tabular.
-* **Engenharia de Variáveis:** Criação da métrica `conta_diaria` para analisar a sensibilidade ao preço.
-* **Limpeza:** Tratamento de valores nulos e conversão de variáveis de faturamento.
-* **Insights:** Identificamos que clientes com contrato mensal e planos de fibra óptica possuem 40% mais propensão ao cancelamento.
+### 1. ETL & Limpeza (Processamento de Dados)
+* **Extração:** Consumo de dados brutos aninhados via API.
+* **Flattening:** Achatamento de estruturas JSON complexas para formato tabular (Pandas).
+* **Limpeza:** Tratamento de valores nulos, correção de tipos de dados (faturamento total) e remoção de registros inconsistentes.
+* **Padronização (Opcional):** Tradução de colunas e dados para Português e conversão da variável alvo para formato binário (1 e 0).
+
+### 2. Engenharia de Variáveis (Métricas Extras)
+* Criação da métrica **`conta_diaria`**: Cálculo do custo diário do cliente para identificar sensibilidade ao preço.
+
+### 3. Análise Exploratória (Insights Chave)
+* **Contratos:** Clientes com contratos mensais possuem taxa de evasão drasticamente superior aos de contrato anual.
+* **Método de Pagamento:** O pagamento via boleto (Electronic Check) é um forte indicador de churn precoce.
+* **Fidelidade:** Os primeiros 5 meses de contrato são o período de maior risco para a empresa.
+* **Matriz de Correlação:** Validação matemática da relação entre gastos elevados e probabilidade de cancelamento.
+
+## 📈 Resultados e Recomendações
+Com a análise, identificamos que o perfil de risco é o **novo cliente, com plano mensal e pagamento manual**. 
+**Ações sugeridas:**
+1. Incentivos financeiros para migração de planos mensais para anuais.
+2. Bonificações para clientes que cadastrarem débito automático/cartão.
+3. Régua de relacionamento específica para os primeiros 90 dias do cliente.
+
+### 📈 Visualizações Principais
+
+#### 1. Distribuição da Evasão
+![Distribuição de Churn](img/churn_distribuicao.png)
+
+#### 2. Impacto do Tipo de Contrato
+![Evasão por Contrato](img/churn_contrato.png)
+
+#### 3. Matriz de Correlação entre Variáveis
+![Heatmap de Correlação](img/heatmap.png)
+
 
 ### Parte 2: Machine Learning e Inteligência de Negócio
 * **Modelagem:** Comparação entre **Regressão Logística** e **Random Forest**.
@@ -50,4 +78,4 @@ A implementação deste modelo permite à Telecom X:
 * **/img**: Gráficos para documentação e apresentações.
 
 ---
-**Projeto desenvolvido por: Bruno Gabriel**
+**Projeto desenvolvido por: Bruno Gabriel** 

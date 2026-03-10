@@ -5,222 +5,89 @@
 ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![Seaborn](https://img.shields.io/badge/Seaborn-blue?style=for-the-badge)
 
-Este projeto apresenta uma solução completa de **Data Science** para a empresa fictícia **Telecom X**. O objetivo foi identificar os principais motivos que levam os clientes a cancelarem seus serviços (**Churn**) e propor estratégias baseadas em dados para retenção.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LQXs-WWrTFVEprv34LqWvcrxAVnXj6pc?usp=sharing)
+
+Este projeto apresenta uma solução completa de **Inteligência de Dados** para a empresa fictícia **Telecom X**. O objetivo foi identificar os gatilhos que levam ao cancelamento de serviços (**Churn**) e desenvolver um modelo preditivo para antecipar a perda de clientes.
 
 ---
 
-# 📌 Contexto do Desafio
+# 📌 O Desafio de Negócio
 
-A Telecom X enfrentava uma perda significativa de clientes. Recebemos um banco de dados bruto via API em formato **JSON aninhado**.
+A Telecom X enfrentava uma perda acelerada de base. O banco de dados original estava em formato **JSON aninhado**, exigindo um processo robusto de Engenharia de Dados antes da análise. 
 
-O desafio foi percorrer todo o ciclo **ETL (Extract, Transform, Load)** e realizar uma **Análise Exploratória (EDA)** profunda para gerar insights acionáveis.
+O foco foi percorrer todo o ciclo: **Extração -> Tratamento -> EDA -> Modelagem -> Insights Estratégicos**.
 
 ---
 
 # 🛠️ Etapas do Projeto
 
-## Parte 1 — Análise de evasão de clientes
+## Parte 1 — Engenharia de Dados e EDA
 
-### 1. ETL & Limpeza (Processamento de Dados)
+### 1. Processamento de Dados (ETL)
+- **Extração & Flattening:** Consumo de API e achatamento de estruturas complexas para formato tabular.
+- **Sanitização:** Conversão de tipos (faturamento), tratamento de nulos e remoção de registros inconsistentes.
+- **Localized Data:** Tradução completa do dataset para Português, facilitando a interpretação por stakeholders locais.
 
-- **Extração:** Consumo de dados brutos aninhados via API.
-- **Flattening:** Achatamento de estruturas JSON complexas para formato tabular (Pandas).
-- **Limpeza:** Tratamento de valores nulos, correção de tipos de dados (faturamento total) e remoção de registros inconsistentes.
-- **Padronização (Opcional):** Tradução de colunas e dados para Português e conversão da variável alvo para formato binário (1 e 0).
-
-### 2. Engenharia de Variáveis (Métricas Extras)
-
-Criação da métrica **`conta_diaria`**: cálculo do custo diário do cliente para identificar sensibilidade ao preço.
-
-### 3. Análise Exploratória (Insights Chave)
-
-- **Contratos:** Clientes com contratos mensais possuem taxa de evasão drasticamente superior aos de contrato anual.
-- **Método de Pagamento:** O pagamento via boleto (*Electronic Check*) é um forte indicador de churn precoce.
-- **Fidelidade:** Os primeiros **5 meses** de contrato são o período de maior risco para a empresa.
-- **Matriz de Correlação:** Validação matemática da relação entre gastos elevados e probabilidade de cancelamento.
+### 2. Insights Estratégicos (A Descoberta)
+- **O Perfil de Risco:** Clientes com **contratos mensais** e pagamento via **boleto (Electronic Check)** representam o maior volume de evasão.
+- **Janela Crítica:** Os primeiros **5 meses** são vitais; se o cliente ultrapassa essa barreira, a chance de churn cai drasticamente.
+- **Engenharia de Variáveis:** Criação da métrica `conta_diaria` para analisar a sensibilidade ao preço.
 
 ---
 
-# 📈 Resultados e Recomendações
+## Parte 2 — Inteligência Artificial Preditiva
 
-Com a análise, identificamos que o perfil de risco é o:
+Transformamos os padrões históricos em um modelo capaz de prever o futuro.
 
-**Novo cliente + plano mensal + pagamento manual**
+### ⚙️ Modelagem e Técnicas
+- **Balanceamento de Classes:** Uso de `class_weight='balanced'` para lidar com o desbalanceamento natural do churn (minoria que sai vs. maioria que fica).
+- **Algoritmos:** Comparação entre **Regressão Logística** (interpretabilidade) e **Random Forest** (precisão em relações não lineares).
+- **Feature Importance:** Identificação matemática de que o **Tempo de Contrato** e **Gastos Mensais** são os maiores preditores de cancelamento.
 
-### Ações sugeridas
-
-1. Incentivos financeiros para migração de planos mensais para anuais  
-2. Bonificações para clientes que cadastrarem débito automático/cartão  
-3. Régua de relacionamento específica para os primeiros **90 dias do cliente**
-
----
-
-# 📊 Visualizações Principais
-
-### 1. Distribuição da Evasão
-
-![Distribuição de Churn](img/01_churn_distribuicao.png)
-
-### 2. Impacto do Tipo de Contrato
-
-![Evasão por Contrato](img/01_churn_contrato.png)
-
-### 3. Matriz de Correlação entre Variáveis
-
-![Heatmap de Correlação](img/01_heatmap.png)
+### ⚖️ Lógica de Negócio vs. Erros do Modelo
+Analisamos o desempenho através da **Matriz de Confusão**, priorizando o **Recall**:
+- **Falsos Negativos (O maior risco):** Identificar como "seguro" um cliente que vai cancelar (Prejuízo direto).
+- **Falsos Positivos:** Identificar risco em quem ficaria (Gasto desnecessário com retenção, mas menos grave que a perda total).
 
 ---
 
-# 🤖 Parte 2 — Machine Learning e Inteligência de Negócio
+# 📈 Visualizações de Impacto
 
-Nesta fase, transformamos os insights da análise anterior em uma **solução preditiva automatizada**.
+<p align="center"> 
+  <b>Distribuição de Churn e Perfil de Contrato</b><br>
+  <img src="img/01_churn_distribuicao.png" width="45%"> 
+  <img src="img/01_churn_contrato.png" width="45%">
+</p>
 
----
-
-## 🔧 Preparação de Atributos (Feature Engineering)
-
-- Aplicação de **Label Encoding** e **One-Hot Encoding** para transformar categorias de texto em dados numéricos processáveis pelo modelo.
-- Uso de **StandardScaler** para normalizar as escalas de gasto mensal e total, evitando que valores altos distorçam o aprendizado.
-
----
-
-## 🤖 Treinamento de Modelos
-
-- **Regressão Logística**: Implementada como modelo base por sua excelente interpretabilidade e rapidez.
-- **Random Forest**: Utilizada para capturar relações não lineares complexas entre as variáveis.
+<p align="center"> 
+  <b>Matriz de Confusão e Importância de Variáveis</b><br>
+  <img src="img/02_matriz_confusao_logistica.png" width="45%"> 
+  <img src="img/02_importancia_variaveis.png" width="45%">
+</p>
 
 ---
 
-## ⚖️ Balanceamento de Classes
-
-Como o número de clientes que não saem é muito maior, aplicamos o parâmetro:
-
-`class_weight='balanced'`
-
-Isso garante que o modelo não ignore a minoria que cancela (**Churn**).
-
----
-
-## 📊 Métrica de Sucesso (Business Score)
-
-Desenvolvimento de uma **função de custo ponderado personalizada**.
-
-Essa métrica vai além da acurácia técnica, calculando o impacto financeiro real de cada erro do modelo:
-
-- **Falsos Negativos** → cliente que cancelaria e não foi identificado
-- **Falsos Positivos** → cliente marcado como risco sem necessidade
-
----
-
-## 📦 Exportação do Modelo
-
-Finalização com a biblioteca **Pickle**, gerando o arquivo `.pkl` que permite integrar a inteligência do projeto em:
-
-- Sistemas de produção  
-- APIs  
-- Dashboards analíticos
-
----
-
-# 📈 Resultados Visuais
-
-### 1. Fatores de Risco (Feature Importance)
-
-O modelo identificou que **comportamento de gastos** e **tempo de contrato** são os maiores preditores.
-
-![Importância das Variáveis](img/02_importancia_variaveis.png)
-
----
-
-### 2. Matriz de Confusão (Desempenho)
-
-A Regressão Logística permitiu capturar a maioria dos clientes em risco (**Recall elevado**).
-
-![Matriz de Confusão](img/02_matriz_confusao_logistica.png)
-
----
-
-### 3. Correlação de Variáveis
-
-Análise matemática da relação entre as variáveis de serviço e a evasão.
-
-![Matriz de Correlação](img/02_matriz_correlacao.png)
-
----
-
-# 💰 Impacto de Negócio
+# 💰 Conclusões e Valor Agregado
 
 A implementação deste modelo permite à Telecom X:
+1. **Campanhas de Retenção Direcionadas:** Focar o orçamento apenas nos clientes com Score de risco elevado.
+2. **Incentivo à Fidelidade:** Promoções para migração de planos mensais para anuais nos primeiros 90 dias.
+3. **Fidelização Financeira:** Incentivar o débito automático para reduzir o churn ligado ao "atrito" do pagamento manual.
 
-1. **Reduzir prejuízos** ao identificar churn preventivamente  
-2. **Direcionar campanhas de retenção** para clientes de maior risco  
-3. **Reduzir CAC (Customer Acquisition Cost)** preservando clientes existentes
+---
+
+# 🚀 Próximos Passos (Roadmap de Evolução)
+- [ ] **Otimização de Hiperparâmetros:** Implementar `GridSearchCV` para extrair o máximo de performance dos modelos.
+- [ ] **Cross-Validation:** Validar a robustez do modelo em diferentes dobras dos dados.
+- [ ] **Deploy:** Criar uma API simples ou dashboard no Streamlit para que o time de marketing possa consultar o risco de um cliente em tempo real.
 
 ---
 
 # 📁 Estrutura do Repositório
-
-```
-data/
-notebooks/
-models/
-img/
-README.md
-requirements.txt
-```
-
-- **/data** → Base de dados limpa e tratada  
-- **/notebooks** → Notebooks de EDA e treinamento dos modelos  
-- **/models** → Arquivo `.pkl` do modelo treinado  
-- **/img** → Gráficos utilizados na documentação  
+- `/data`: Base de dados processada.
+- `/notebooks`: Notebooks de análise e treinamento.
+- `/models`: Arquivo `.pkl` do modelo final exportado.
+- `/img`: Gráficos e visualizações da documentação.
 
 ---
-
-# 🚀 Como Executar o Projeto
-
-### 1. Clone este repositório
-
-```bash
-git clone https://github.com/brugabom95/telecom-x-churn-prediction.git
-```
-
-### 2. Acesse a pasta do projeto
-
-```bash
-cd telecom-x-churn-prediction
-```
-
-### 3. Instale as dependências
-
-```bash
-pip install -r requirements.txt
-```
-
-Principais bibliotecas utilizadas:
-
-- pandas  
-- numpy  
-- scikit-learn  
-- seaborn  
-- matplotlib  
-- jupyter  
-
----
-
-### 4. Execute os notebooks
-
-```bash
-jupyter notebook
-```
-
-Abra os arquivos dentro da pasta `/notebooks` e siga a ordem:
-
-1. **EDA (Exploratory Data Analysis)**  
-2. **Machine Learning**
-
----
-
-# 📜 Licença
-
-Este projeto está sob a licença **MIT**.  
-Sinta-se livre para usar e adaptar.
+*Projeto desenvolvido como parte do Challenge de Data Science - Alura Store.*

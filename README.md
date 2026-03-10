@@ -101,5 +101,16 @@ A implementação deste modelo permite à Telecom X:
 * **/img**: Gráficos para documentação e apresentações.
 
 ---
+## 🚀 Como Executar o Projeto
 
-**Projeto desenvolvido por: Bruno Gabriel**
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/brugabom95/telecom-x-churn-prediction.git
+
+- Instale as dependências:
+pip install -r requirements.txt
+
+- Execute os notebooks na pasta /notebooks para reproduzir a análise e o treinamento dos modelos.
+
+📜 Licença
+Este projeto está sob a licença MIT. Sinta-se livre para usar e adaptar.

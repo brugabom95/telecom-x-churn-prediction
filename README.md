@@ -100,17 +100,29 @@ A implementação deste modelo permite à Telecom X:
 * **/models**: Arquivo `.pkl` do modelo treinado.
 * **/img**: Gráficos para documentação e apresentações.
 
----
 ## 🚀 Como Executar o Projeto
 
 1. Clone este repositório:
    ```bash
    git clone https://github.com/brugabom95/telecom-x-churn-prediction.git
+Acesse a pasta do projeto:
+   cd telecom-x-churn-prediction
 
-- Instale as dependências:
+   - Instale as dependências listadas no arquivo requirements.txt:
 pip install -r requirements.txt
 
-- Execute os notebooks na pasta /notebooks para reproduzir a análise e o treinamento dos modelos.
+- As principais bibliotecas utilizadas são: pandas, numpy, scikit-learn, seaborn e matplotlib.
+Também incluímos jupyter para execução dos notebooks e suporte adicional para manipulação de objetos pickle.
+
+- Execute os notebooks na pasta /notebooks para reproduzir a análise e o treinamento dos modelos:
+jupyter notebook
+
+- Abra os arquivos dentro da pasta e siga a ordem das etapas:
+- EDA (Exploratory Data Analysis)
+- Machine Learning
+
 
 📜 Licença
 Este projeto está sob a licença MIT. Sinta-se livre para usar e adaptar.
+
+

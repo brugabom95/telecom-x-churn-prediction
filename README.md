@@ -12,6 +12,7 @@ A Telecom X enfrentava uma perda significativa de clientes. Recebemos um banco d
 
 ## 🛠️ Etapas do Projeto
 
+##Parte 1 - Análise de evasão de clientes
 ### 1. ETL & Limpeza (Processamento de Dados)
 * **Extração:** Consumo de dados brutos aninhados via API.
 * **Flattening:** Achatamento de estruturas JSON complexas para formato tabular (Pandas).
@@ -28,7 +29,7 @@ A Telecom X enfrentava uma perda significativa de clientes. Recebemos um banco d
 * **Matriz de Correlação:** Validação matemática da relação entre gastos elevados e probabilidade de cancelamento.
 
 ## 📈 Resultados e Recomendações
-Com a análise, identificamos que o perfil de risco é o **novo cliente, com plano mensal e pagamento manual**. 
+Com a análise, identificamos que o perfil de risco é o **novo cliente, com plano mensal e pagamento manual**.  
 **Ações sugeridas:**
 1. Incentivos financeiros para migração de planos mensais para anuais.
 2. Bonificações para clientes que cadastrarem débito automático/cartão.
@@ -45,26 +46,48 @@ Com a análise, identificamos que o perfil de risco é o **novo cliente, com pla
 #### 3. Matriz de Correlação entre Variáveis
 ![Heatmap de Correlação](img/01_heatmap.png)
 
+---
 
-### Parte 2: Machine Learning e Inteligência de Negócio
-* **Modelagem:** Comparação entre **Regressão Logística** e **Random Forest**.
-* **Tratamento de Dados:** Aplicação de normalização (Scaling) e balanceamento de classes (`class_weight='balanced'`).
-* **Otimização:** Uso de métricas customizadas de **Custo Ponderado** para garantir que o modelo seja financeiramente viável para a empresa.
-* **Exportação:** Modelo final salvo via **Pickle** para uso em produção.
+## 🤖 Parte 2: Machine Learning e Inteligência de Negócio
+
+Nesta fase, transformamos os insights da análise anterior em uma solução preditiva automatizada.
+
+### 🔧 Preparação de Atributos (Feature Engineering)
+- Aplicação de **Label Encoding** e **One-Hot Encoding** para transformar categorias de texto em dados numéricos processáveis pelo modelo.  
+- Uso de **StandardScaler** para normalizar as escalas de gasto mensal e total, evitando que valores altos distorçam o aprendizado.
+
+### 🤖 Treinamento de Modelos
+- **Regressão Logística**: Implementada como modelo base por sua excelente interpretabilidade e rapidez.  
+- **Random Forest**: Utilizada para capturar relações não lineares complexas entre as variáveis.
+
+### ⚖️ Balanceamento de Classes
+Como o número de clientes que não saem é muito maior, aplicamos o parâmetro  
+`class_weight='balanced'` para garantir que o modelo não ignore a minoria que cancela (**Churn**).
+
+### 📊 Métrica de Sucesso (Business Score)
+- Desenvolvimento de uma função de **Custo Ponderado personalizada**.  
+- Esta métrica vai além da acurácia técnica, calculando o impacto financeiro real de cada erro do modelo (**Falsos Negativos vs. Falsos Positivos**).
+
+### 📦 Exportação do Modelo
+Finalização com a biblioteca **Pickle**, gerando o arquivo `.pkl` que permite integrar a inteligência do projeto em sistemas de produção ou dashboards em tempo real.
+
+---
 
 ## 📈 Resultados Visuais
 
 #### 1. Fatores de Risco (Feature Importance)
-O modelo identificou que o comportamento de gastos e o tempo de contrato são os maiores preditores.
+O modelo identificou que o comportamento de gastos e o tempo de contrato são os maiores preditores.  
 ![Importância das Variáveis](img/02_importancia_variaveis.png)
 
 #### 2. Matriz de Confusão (Desempenho)
-A Regressão Logística permitiu capturar a maioria dos clientes em risco (Recall elevado).
+A Regressão Logística permitiu capturar a maioria dos clientes em risco (Recall elevado).  
 ![Matriz de Confusão](img/02_matriz_confusao_logistica.png)
 
 #### 3. Correlação de Variáveis
-Análise matemática da relação entre as variáveis de serviço e a evasão.
+Análise matemática da relação entre as variáveis de serviço e a evasão.  
 ![Matriz de Correlação](img/02_matriz_correlacao.png)
+
+---
 
 ## 💰 Impacto de Negócio
 A implementação deste modelo permite à Telecom X:
@@ -78,5 +101,5 @@ A implementação deste modelo permite à Telecom X:
 * **/img**: Gráficos para documentação e apresentações.
 
 ---
-**Projeto desenvolvido por: Bruno Gabriel** 
 
+**Projeto desenvolvido por: Bruno Gabriel**

@@ -158,15 +158,6 @@ A implementação deste modelo permite à Telecom X:
 
 ---
 
-# 🔮 Próximos Passos (Evolução do Projeto)
-
-Como melhorias futuras para escalar esta solução, planeja-se:
-- **Otimização de Hiperparâmetros:** Utilizar *GridSearchCV* para refinar ainda mais o desempenho do Random Forest.
-- **Teste de Algoritmos Avançados:** Implementar modelos baseados em gradiente, como *XGBoost* ou *LightGBM*, para ganho de performance.
-- **Deploy do Modelo:** Criar uma aplicação web interativa utilizando **Streamlit** para que a equipe de retenção possa inserir dados de um cliente e prever o risco de churn em tempo real.
-
----
-
 # 📁 Estrutura do Repositório
 
 ```
